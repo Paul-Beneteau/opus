@@ -1,0 +1,16 @@
+# Godot 4+ specific
+.godot/
+.nomedia
+
+# Godot-specific config
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (generated from CSV files)
+*.translation
+
+# Mono/C# specific (if you use C#)
+.mono/
+data_*/
+mono_crash.*.json
