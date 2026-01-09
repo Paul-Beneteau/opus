@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb7n5elpsbylp"]
+
+[ext_resource type="Texture2D" uid="uid://cssynxr6ranhh" path="res://cards/assets/T_Strike_Card.png" id="1_8s2bs"]
+[ext_resource type="Script" uid="uid://brl88emyocw1g" path="res://ui/card/card_ui.gd" id="1_736fo"]
+
+[node name="CardUI" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(140, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_736fo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 200.0
+texture = ExtResource("1_8s2bs")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="." method="_on_texture_rect_mouse_exited"]

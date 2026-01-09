@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dmrnb48l0f2yp"]
+
+[ext_resource type="Texture2D" uid="uid://btoyvbe5danop" path="res://cards/assets/T_Defence_Card.png" id="1_7nnef"]
+[ext_resource type="Script" uid="uid://cufl2gpjgm5xg" path="res://cards/card_data.gd" id="1_gl463"]
+
+[resource]
+script = ExtResource("1_gl463")
+card_id = &"defend"
+display_name = "defend"
+description = "Block 5 damage"
+card_type = 1
+card_art = ExtResource("1_7nnef")
+block_amount = 5
+metadata/_custom_type_script = "uid://cufl2gpjgm5xg"
