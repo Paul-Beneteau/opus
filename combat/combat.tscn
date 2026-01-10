@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dg4nhx1ltn1a6"]
+[gd_scene load_steps=13 format=3 uid="uid://dg4nhx1ltn1a6"]
 
 [ext_resource type="Script" uid="uid://2ap302ki1u4s" path="res://combat/combat_manager.gd" id="1_puw3m"]
 [ext_resource type="Script" uid="uid://cufl2gpjgm5xg" path="res://cards/card_data.gd" id="3_iga5g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dmrnb48l0f2yp" path="res://cards/database/defend.tres" id="5_q6cuf"]
 [ext_resource type="Script" uid="uid://k4051h3swrlu" path="res://combat/targeting_manager.gd" id="6_q6cuf"]
 [ext_resource type="PackedScene" uid="uid://dsraprpbw37il" path="res://ui/hand/hand_ui.tscn" id="7_6vidd"]
+[ext_resource type="Script" uid="uid://ha8fbmppr03t" path="res://combat/turn_manager.gd" id="7_uf1ch"]
 [ext_resource type="Script" uid="uid://i4m1g8ycb3tk" path="res://ui/combat/draw_pile.gd" id="8_mrekk"]
 [ext_resource type="Script" uid="uid://bflesdv0ywygb" path="res://ui/combat/discard_pile.gd" id="9_t7acs"]
 [ext_resource type="PackedScene" uid="uid://b3efdfqivpwqn" path="res://characters/enemy/enemy.tscn" id="10_4h14y"]
@@ -23,6 +24,9 @@ initial_deck = Array[ExtResource("3_iga5g")]([ExtResource("4_4h14y"), ExtResourc
 
 [node name="TargetingManager" type="Node" parent="."]
 script = ExtResource("6_q6cuf")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("7_uf1ch")
 
 [node name="HandUI" parent="." instance=ExtResource("7_6vidd")]
 anchors_preset = 7
@@ -109,7 +113,7 @@ offset_top = -69.0
 offset_bottom = -69.0
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="EndTurnButton" type="Button" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
