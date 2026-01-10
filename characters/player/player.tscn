@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmfcaasynl7cu"]
+
+[ext_resource type="Script" uid="uid://b6usuv852b87c" path="res://characters/player/player.gd" id="1_5dc8e"]
+[ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="1_exd8k"]
+[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/health_bar_ui.tscn" id="2_5dc8e"]
+[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/health_component.gd" id="3_ixbpm"]
+
+[node name="Player" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5dc8e")
+
+[node name="PlayerTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -70.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_exd8k")
+expand_mode = 1
+flip_h = true
+
+[node name="HealthBarUI" parent="PlayerTexture" instance=ExtResource("2_5dc8e")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = 14.0
+offset_bottom = 29.0
+grow_vertical = 0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_ixbpm")
+metadata/_custom_type_script = "uid://d15c3xin2ox62"

@@ -1,71 +1,33 @@
 class_name CardManager
 extends Node
-
+		
 signal hand_changed
 signal draw_pile_changed
 signal discard_pile_changed
-signal card_drawn(card: CardInstance)
-signal card_discarded(card: CardInstance)
 signal card_played(card: CardInstance)
 
 @export var initial_deck: Array[CardData] = []
-
-var _deck: Array[CardInstance] = []
-var _hand: Array[CardInstance] = []
-var _draw_pile: Array[CardInstance] = []
-var _discard_pile: Array[CardInstance] = []
-
-# Getter/Setter
-
-func get_draw_pile() -> Array[CardInstance]:
-	return _draw_pile
+@onready var hand_ui: HandUI = $"../HandUI"
+var deck: Array[CardInstance] = []
+var hand: Array[CardInstance] = []
+var draw_pile: Array[CardInstance] = []
+var discard_pile: Array[CardInstance] = []
 
 
-func get_hand() -> Array[CardInstance]:
-	return _hand
-
-
-func get_discard_pile() -> Array[CardInstance]:
-	return _discard_pile
-
-
-func get_draw_pile_count() -> int:
-	return _draw_pile.size()
-
-
-func get_hand_count() -> int:
-	return _hand.size()
-
-
-func get_discard_pile_count() -> int:
-	return _discard_pile.size()
-
-# endregion
-
-# Setup
-
-func initialize() -> void:
-	_deck.clear()
-	_draw_pile.clear()
-	_hand.clear()
-	_discard_pile.clear()
+func _ready() -> void:
+	hand_changed.connect(func(): hand_ui.refresh(hand))
 	
 	for data in initial_deck:
 		if data:
 			var card := CardInstance.new(data)
-			_deck.append(card)
-	
-	_draw_pile = _deck.duplicate()
-	shuffle_draw_pile()
-	
-	draw_pile_changed.emit()
+			deck.append(card)
+				
+	draw_pile = deck.duplicate()
+	shuffle_draw_pile()	
 
-# endregion
-
-# region Actions
 
 func shuffle_draw_pile() -> void:
-	_draw_pile.shuffle()
+	draw_pile.shuffle()
 	draw_pile_changed.emit()
 
 
@@ -74,45 +36,41 @@ func draw_cards(count: int) -> void:
 		draw_single_card()
 
 
-func draw_single_card() -> CardInstance:
-	if _draw_pile.is_empty():
+func draw_single_card() -> void:
+	if draw_pile.is_empty():
 		shuffle_discard_into_draw_pile()
 	
-	if _draw_pile.is_empty():
-		return null
+	if draw_pile.is_empty():
+		print("draw_single_card(): draw_pile is empty")
+		return
 	
-	var card: CardInstance = _draw_pile.pop_back()
-	_hand.append(card)
+	var card: CardInstance = draw_pile.pop_back()
+	hand.append(card)
 	
-	card_drawn.emit(card)
 	draw_pile_changed.emit()
-	hand_changed.emit()
-	
-	return card
+	hand_changed.emit()	
 
 
 func discard_card(card: CardInstance) -> void:
 	if not card:
 		return
 	
-	var index := _hand.find(card)
+	var index := hand.find(card)
 	if index == -1:
 		push_warning("CardManager: Card not found in hand")
 		return
 	
-	_hand.remove_at(index)
-	_discard_pile.append(card)
+	hand.remove_at(index)
+	discard_pile.append(card)
 	
-	card_discarded.emit(card)
 	hand_changed.emit()
 	discard_pile_changed.emit()
 
 
 func discard_hand() -> void:
-	while not _hand.is_empty():
-		var card: CardInstance = _hand.pop_back()
-		_discard_pile.append(card)
-		card_discarded.emit(card)
+	while not hand.is_empty():
+		var card: CardInstance = hand.pop_back()
+		discard_pile.append(card)
 	
 	hand_changed.emit()
 	discard_pile_changed.emit()
@@ -122,13 +80,13 @@ func play_card(card: CardInstance) -> void:
 	if not card:
 		return
 	
-	var index := _hand.find(card)
+	var index := hand.find(card)
 	if index == -1:
 		push_warning("CardManager: Card not found in hand")
 		return
 	
-	_hand.remove_at(index)
-	_discard_pile.append(card)
+	hand.remove_at(index)
+	discard_pile.append(card)
 	
 	card_played.emit(card)
 	hand_changed.emit()
@@ -136,13 +94,28 @@ func play_card(card: CardInstance) -> void:
 
 
 func shuffle_discard_into_draw_pile() -> void:
-	if _discard_pile.is_empty():
+	if discard_pile.is_empty():
 		return
 	
-	_draw_pile.append_array(_discard_pile)
-	_discard_pile.clear()
+	draw_pile.append_array(discard_pile)
+	discard_pile.clear()
 	
 	shuffle_draw_pile()
 	discard_pile_changed.emit()
 
-# endregion
+
+func play_card_on_target(target: Node, card: CardInstance) -> void:
+	_apply_card_effect(target, card)
+	play_card(card)
+
+
+func _apply_card_effect(target: Node, card: CardInstance) -> void:
+	var health_comp := target.get_node_or_null("HealthComponent") as HealthComponent
+	if not health_comp:
+		push_warning("Target has no HealthComponent")
+		return
+
+	if card.card_data.damage_amount > 0:
+		health_comp.add_health(-card.card_data.damage_amount)
+
+	print("Dealt %d damage to %s" % [card.card_data.damage_amount, target.name])

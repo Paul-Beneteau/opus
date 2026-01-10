@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://drupa40vfqm1t"]
+
+[ext_resource type="Script" uid="uid://ci2333aqsyh3d" path="res://characters/health_bar_ui.gd" id="1_trkho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lept"]
+bg_color = Color(0.09239706, 0.09239707, 0.092397, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trkho"]
+bg_color = Color(0.7, 0.09799999, 0.09799999, 1)
+
+[node name="HealthBarUI" type="ProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_8lept")
+theme_override_styles/fill = SubResource("StyleBoxFlat_trkho")
+value = 20.0
+show_percentage = false
+script = ExtResource("1_trkho")
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10/10"

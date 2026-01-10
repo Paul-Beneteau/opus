@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3efdfqivpwqn"]
+
+[ext_resource type="Script" uid="uid://c7ph3mpr6e0ge" path="res://characters/enemy/enemy.gd" id="1_427j3"]
+[ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="1_bm2dv"]
+[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/health_bar_ui.tscn" id="2_iuxou"]
+[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/health_component.gd" id="3_iuxou"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_427j3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.14400001, 0.14400001, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_offset = Vector2(100, 0)
+
+[node name="Enemy" type="Control" groups=["enemies"]]
+layout_mode = 3
+offset_left = -200.0
+offset_top = -100.0
+offset_bottom = 100.0
+mouse_filter = 1
+script = ExtResource("1_427j3")
+
+[node name="EnemyTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -70.0
+offset_right = 100.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bm2dv")
+expand_mode = 1
+
+[node name="HealthBarUI" parent="EnemyTexture" instance=ExtResource("2_iuxou")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_top = 14.0
+offset_bottom = 29.0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HighlightTarget" type="Panel" parent="EnemyTexture"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_427j3")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_iuxou")

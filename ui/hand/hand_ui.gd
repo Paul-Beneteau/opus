@@ -1,12 +1,27 @@
+class_name HandUI
 extends Control
 
-@export var card_manager: CardManager
+signal held_card_picked(card_index: int)
+signal held_card_released(card_index: int)
+
 @export var card_ui: PackedScene
-@onready var card_container = $CardContainer
+@onready var card_container : HBoxContainer = $CardContainer
 
-func _ready() -> void:
-	card_manager.hand_changed.connect(_on_hand_changed)
+		
+func refresh(hand: Array[CardInstance]) -> void:		
+	for child in card_container.get_children():
+		child.queue_free()
 
-func _on_hand_changed() -> void:
-	var card_ui_instance = card_ui.instantiate()
-	card_container.add_child(card_ui_instance)
+	for card in hand:
+		var card_ui_instance: CardUI = card_ui.instantiate()
+		card_ui_instance.initialize(card)
+		card_container.add_child(card_ui_instance)		
+		card_ui_instance.card_picked.connect(_on_card_held_picked)
+		card_ui_instance.card_released.connect(_on_card_held_released)
+
+
+func _on_card_held_picked(card_index: int) -> void:
+	held_card_picked.emit(card_index)
+
+func _on_card_held_released(card_index: int) -> void:
+	held_card_released.emit(card_index)
