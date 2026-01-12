@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bb7n5elpsbylp"]
 
 [ext_resource type="Texture2D" uid="uid://cssynxr6ranhh" path="res://cards/assets/T_Strike_Card.png" id="1_8s2bs"]
-[ext_resource type="Script" uid="uid://brl88emyocw1g" path="res://ui/card/card_ui.gd" id="1_736fo"]
+[ext_resource type="Script" uid="uid://brl88emyocw1g" path="res://cards/ui/card_ui.gd" id="1_736fo"]
 
 [node name="CardUI" type="Control"]
 clip_contents = true

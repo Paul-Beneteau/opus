@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c37vlspnu4shp"]
 
-[ext_resource type="Script" uid="uid://cufl2gpjgm5xg" path="res://cards/card_data.gd" id="1_sfr6a"]
+[ext_resource type="Script" uid="uid://cufl2gpjgm5xg" path="res://cards/ressources/card_data.gd" id="1_sfr6a"]
 [ext_resource type="Texture2D" uid="uid://cssynxr6ranhh" path="res://cards/assets/T_Strike_Card.png" id="1_x5ekc"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsraprpbw37il"]
 
-[ext_resource type="Script" uid="uid://blrrnnh4ih2fe" path="res://ui/hand/hand_ui.gd" id="1_wq5uq"]
-[ext_resource type="PackedScene" uid="uid://bb7n5elpsbylp" path="res://ui/card/card_ui.tscn" id="2_exru0"]
+[ext_resource type="Script" uid="uid://blrrnnh4ih2fe" path="res://cards/ui/hand_ui.gd" id="1_wq5uq"]
+[ext_resource type="PackedScene" uid="uid://bb7n5elpsbylp" path="res://cards/ui/card_ui.tscn" id="2_exru0"]
 
 [node name="HandUI" type="Control"]
 layout_mode = 3

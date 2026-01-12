@@ -6,9 +6,8 @@ extends Control
 
 
 func _ready() -> void:	
-	health_comp.health_changed.connect(
-		func(h): health_bar.refresh(h, health_comp.get_health(), health_comp.get_max_health())
-	)	
-	health_bar.refresh(health_comp.get_health(), health_comp.get_max_health())
-	
 	health_comp.health_changed.connect(health_bar.refresh)
+	health_comp.max_health_changed.connect(health_bar.refresh)
+	health_comp.health = GameManager.state.health
+	health_comp.max_health = GameManager.state.max_health
+	health_bar.refresh(health_comp.health, health_comp.max_health)

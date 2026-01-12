@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://c234ovu0lr0i2"]
+
+[ext_resource type="Script" uid="uid://dfuyt7nwo0drj" path="res://levels/map/map_level.gd" id="1_0s0lk"]
+
+[node name="MapLevel" type="Node"]
+script = ExtResource("1_0s0lk")
+
+[node name="StandardEnemyButton" type="Button" parent="." groups=["standard_enemy_button"]]
+offset_left = 511.0
+offset_top = 442.0
+offset_right = 646.0
+offset_bottom = 473.0
+text = "Standard Enemy"
+
+[node name="StandardEnemyButton2" type="Button" parent="." groups=["standard_enemy_button"]]
+offset_left = 511.0
+offset_top = 360.0
+offset_right = 646.0
+offset_bottom = 391.0
+text = "Standard Enemy"
+
+[node name="StandardEnemyButton3" type="Button" parent="." groups=["standard_enemy_button"]]
+offset_left = 507.0
+offset_top = 271.0
+offset_right = 642.0
+offset_bottom = 302.0
+text = "Standard Enemy"
+
+[node name="BossEnemyButton" type="Button" parent="." groups=["boss_enemy_button"]]
+offset_left = 506.0
+offset_top = 185.0
+offset_right = 641.0
+offset_bottom = 216.0
+text = "Boss Enemy"
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(576, 442, 576, 217)
+width = 6.0
+default_color = Color(0.30876434, 0.5376901, 0.69125813, 1)

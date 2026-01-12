@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drupa40vfqm1t"]
 
-[ext_resource type="Script" uid="uid://ci2333aqsyh3d" path="res://characters/health_bar_ui.gd" id="1_trkho"]
+[ext_resource type="Script" uid="uid://ci2333aqsyh3d" path="res://characters/ui/health_bar_ui.gd" id="1_trkho"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lept"]
 bg_color = Color(0.09239706, 0.09239707, 0.092397, 1)

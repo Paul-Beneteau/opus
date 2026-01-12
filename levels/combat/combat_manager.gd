@@ -1,17 +1,23 @@
 class_name CombatManager
 extends Node
 
+signal combat_ended()
+
 @onready var card_manager: CardManager = $"../CardManager"
 @onready var hand_ui: HandUI = $"../HandUI"
 @onready var targeting_manager: TargetingManager = $"../TargetingManager"
 @onready var turn_manager: TurnManager = $"../TurnManager"
 @onready var end_turn_button: Button = $"../EndTurnButton"
 @onready var player: Player = $"../Player"
-
+var enemies_alive_count: int = 0
 
 func _ready() -> void:
 	call_deferred("_start_combat")
-
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemies:
+		if enemy is Enemy:
+			enemies_alive_count += 1
+			enemy.die.connect(_on_enemy_die)
 
 func _start_combat() -> void:
 	_register_targets()
@@ -67,3 +73,8 @@ func _register_targets() -> void:
 	for enemy in enemies:
 		targeting_manager.register_target(enemy)
 	
+func _on_enemy_die() -> void:
+	enemies_alive_count -= 1
+	print(str(enemies_alive_count))
+	if enemies_alive_count == 0:
+		combat_ended.emit()

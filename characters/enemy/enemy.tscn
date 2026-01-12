@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c7ph3mpr6e0ge" path="res://characters/enemy/enemy.gd" id="1_427j3"]
 [ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="1_bm2dv"]
-[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/health_bar_ui.tscn" id="2_iuxou"]
-[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/health_component.gd" id="3_iuxou"]
+[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/ui/health_bar_ui.tscn" id="2_iuxou"]
+[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/components/health_component.gd" id="3_iuxou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_427j3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -25,6 +25,7 @@ shadow_offset = Vector2(100, 0)
 
 [node name="Enemy" type="Control" groups=["enemies"]]
 layout_mode = 3
+anchors_preset = 0
 offset_left = -200.0
 offset_top = -100.0
 offset_bottom = 100.0

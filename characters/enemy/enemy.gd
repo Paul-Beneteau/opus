@@ -4,19 +4,18 @@ extends Control
 #TODO: fix 2d scene and remove these signal to use default mouse_entered/exited
 signal mouse_hovered(target: Node)
 signal mouse_unhovered(target: Node)
+signal die
 
 @onready var health_comp: HealthComponent = $HealthComponent
 @onready var health_bar: = $EnemyTexture/HealthBarUI
 @onready var highlight_target = $EnemyTexture/HighlightTarget
-var damage = 5
+var damage = 1
 
 func _ready() -> void:
-	health_comp.health_changed.connect(
-		func(h): health_bar.refresh(h, health_comp.get_health(), health_comp.get_max_health())
-	)
+	health_comp.health_changed.connect(health_bar.refresh)
 	health_bar.refresh(health_comp.get_health(), health_comp.get_max_health())
 
-	health_comp.health_changed.connect(health_bar.refresh)
+	health_comp.die.connect(handle_death)
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
@@ -29,6 +28,16 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	highlight_target.visible = false
 	mouse_unhovered.emit(self)
+
+
+func handle_death() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property($EnemyTexture, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property($EnemyTexture, "scale", Vector2.ZERO, 0.5).set_trans(Tween.TRANS_BACK)	
+	await tween.finished
+	queue_free()
+	die.emit()
 
 
 func play_turn(target: Node) -> void:

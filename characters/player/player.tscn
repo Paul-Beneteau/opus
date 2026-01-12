@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b6usuv852b87c" path="res://characters/player/player.gd" id="1_5dc8e"]
 [ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="1_exd8k"]
-[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/health_bar_ui.tscn" id="2_5dc8e"]
-[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/health_component.gd" id="3_ixbpm"]
+[ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/ui/health_bar_ui.tscn" id="2_5dc8e"]
+[ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/components/health_component.gd" id="3_ixbpm"]
 
 [node name="Player" type="Control"]
 layout_mode = 3
