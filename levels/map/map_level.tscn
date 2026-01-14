@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c234ovu0lr0i2"]
+[gd_scene load_steps=5 format=3 uid="uid://c234ovu0lr0i2"]
 
 [ext_resource type="Script" uid="uid://dfuyt7nwo0drj" path="res://levels/map/map_level.gd" id="1_0s0lk"]
+[ext_resource type="Script" uid="uid://bn3yr24vdv2v0" path="res://levels/map/health_label_ui.gd" id="2_0s0lk"]
+[ext_resource type="Script" uid="uid://b4s54iasylrrn" path="res://levels/map/deck_button.gd" id="2_mdy44"]
+[ext_resource type="PackedScene" uid="uid://w27oqlqkrcrr" path="res://levels/map/upgrade_card_ui.tscn" id="4_v34n8"]
 
 [node name="MapLevel" type="Node"]
 script = ExtResource("1_0s0lk")
@@ -38,3 +41,25 @@ z_index = -1
 points = PackedVector2Array(576, 442, 576, 217)
 width = 6.0
 default_color = Color(0.30876434, 0.5376901, 0.69125813, 1)
+
+[node name="DeckButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 47.0
+offset_right = -76.0
+offset_bottom = 78.0
+grow_horizontal = 0
+text = "Deck"
+script = ExtResource("2_mdy44")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 18.0
+offset_right = 88.0
+offset_bottom = 41.0
+text = "Health: 0/0"
+script = ExtResource("2_0s0lk")
+
+[node name="UpgradeCardUI" parent="." instance=ExtResource("4_v34n8")]

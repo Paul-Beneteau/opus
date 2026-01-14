@@ -27,7 +27,7 @@ func _ready():
 func initialize(card_instance: CardInstance) -> void:
 	if not is_node_ready():
 		await ready
-	description_label.text = card_instance.get_description()
+	description_label.text = card_instance.card_data.description
 
 
 func _handle_mouse_entered() -> void:

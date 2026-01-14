@@ -5,8 +5,12 @@ signal health_changed(health: int, max_health: int)
 signal max_health_changed(health: int, max_health: int)
 signal die
 
-var health: int = 10
-var max_health : int = 10
+@export var max_health: int = 10
+var health: int
+
+
+func _ready() -> void:
+	health = max_health
 
 
 func get_health() -> int:

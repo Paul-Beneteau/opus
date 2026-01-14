@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqk8g5ymwvx8k"]
+
+[ext_resource type="PackedScene" uid="uid://b3efdfqivpwqn" path="res://characters/enemy/enemy.tscn" id="1_wolf"]
+[ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="2_ig3aa"]
+
+[node name="Wolf" instance=ExtResource("1_wolf")]
+custom_minimum_size = Vector2(200, 200)
+
+[node name="EnemyTexture" parent="." index="0"]
+texture = ExtResource("2_ig3aa")

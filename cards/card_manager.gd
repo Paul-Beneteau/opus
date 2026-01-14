@@ -6,9 +6,7 @@ signal draw_pile_changed
 signal discard_pile_changed
 signal card_played(card: CardInstance)
 
-@export var initial_deck: Array[CardData] = []
 @onready var hand_ui: HandUI = $"../HandUI"
-var deck: Array[CardInstance] = []
 var hand: Array[CardInstance] = []
 var draw_pile: Array[CardInstance] = []
 var discard_pile: Array[CardInstance] = []
@@ -16,13 +14,9 @@ var discard_pile: Array[CardInstance] = []
 
 func _ready() -> void:
 	hand_changed.connect(func(): hand_ui.refresh(hand))
-	
-	for data in initial_deck:
-		if data:
-			var card := CardInstance.new(data)
-			deck.append(card)
+
 				
-	draw_pile = deck.duplicate()
+	draw_pile = GameManager.state.deck.duplicate()
 	shuffle_draw_pile()	
 
 

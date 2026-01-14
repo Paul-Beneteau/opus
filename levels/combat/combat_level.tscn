@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg4nhx1ltn1a6"]
+[gd_scene load_steps=13 format=3 uid="uid://dg4nhx1ltn1a6"]
 
 [ext_resource type="Script" uid="uid://xdhr3amdtscs" path="res://levels/combat/combat_level.gd" id="1_jb4yy"]
 [ext_resource type="Script" uid="uid://2ap302ki1u4s" path="res://levels/combat/combat_manager.gd" id="1_puw3m"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://ha8fbmppr03t" path="res://levels/combat/turn_manager.gd" id="7_uf1ch"]
 [ext_resource type="Script" uid="uid://i4m1g8ycb3tk" path="res://cards/ui/draw_pile.gd" id="8_mrekk"]
 [ext_resource type="Script" uid="uid://bflesdv0ywygb" path="res://cards/ui/discard_pile.gd" id="9_t7acs"]
-[ext_resource type="PackedScene" uid="uid://b3efdfqivpwqn" path="res://characters/enemy/enemy.tscn" id="10_4h14y"]
 [ext_resource type="PackedScene" uid="uid://dmfcaasynl7cu" path="res://characters/player/player.tscn" id="11_q6cuf"]
 
 [node name="CombatLevel" type="Node"]
@@ -129,14 +128,17 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "End Turn"
 
-[node name="Enemy3" parent="." instance=ExtResource("10_4h14y")]
-offset_left = 917.0
-offset_top = 155.0
-offset_right = 1117.0
-offset_bottom = 355.0
-
-[node name="Enemy2" parent="." instance=ExtResource("10_4h14y")]
-offset_left = 692.0
-offset_top = 155.0
-offset_right = 892.0
-offset_bottom = 355.0
+[node name="EnemiesPanel" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -169.0
+offset_right = -41.0
+offset_bottom = 31.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 50

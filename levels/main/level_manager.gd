@@ -18,14 +18,19 @@ func load_scene(scene_path: String):
 	current_scene = scene.instantiate()
 	add_child(current_scene)
 	
-	if current_scene.has_signal("combat_requested"):
-		current_scene.combat_requested.connect(_on_combat_requested)
+	if current_scene.has_signal("room_clicked"):
+		current_scene.room_clicked.connect(_on_room_clicked)
 	if current_scene.has_signal("combat_ended"):
 		current_scene.combat_ended.connect(_on_combat_ended)
 
 
-func _on_combat_requested():		
+func _on_room_clicked(room_type: MapLevel.RoomType):		
 	load_scene(combat_level_path)
+	match room_type:
+		MapLevel.RoomType.STANDARD_ENEMIES:
+			current_scene.spawn_standard_enemies()
+		MapLevel.RoomType.ELITE_ENEMY:
+			current_scene.spawn_elite_enemy()
 
 
 func _on_combat_ended():	

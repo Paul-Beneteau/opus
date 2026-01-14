@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3k8h60nyw1al"]
+
+[ext_resource type="PackedScene" uid="uid://b3efdfqivpwqn" path="res://characters/enemy/enemy.tscn" id="1_boss_wolf"]
+
+[node name="BossWolf" instance=ExtResource("1_boss_wolf")]
+damage = 4
+
+[node name="HealthComponent" parent="." index="1"]
+max_health = 20

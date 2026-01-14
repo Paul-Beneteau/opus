@@ -9,7 +9,8 @@ signal die
 @onready var health_comp: HealthComponent = $HealthComponent
 @onready var health_bar: = $EnemyTexture/HealthBarUI
 @onready var highlight_target = $EnemyTexture/HighlightTarget
-var damage = 1
+
+@export var damage: int = 1
 
 func _ready() -> void:
 	health_comp.health_changed.connect(health_bar.refresh)

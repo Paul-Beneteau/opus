@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3efdfqivpwqn"]
 
 [ext_resource type="Script" uid="uid://c7ph3mpr6e0ge" path="res://characters/enemy/enemy.gd" id="1_427j3"]
-[ext_resource type="Texture2D" uid="uid://cf2q0lxgnv7cb" path="res://characters/assets/T_Wolve.png" id="1_bm2dv"]
 [ext_resource type="PackedScene" uid="uid://drupa40vfqm1t" path="res://characters/ui/health_bar_ui.tscn" id="2_iuxou"]
 [ext_resource type="Script" uid="uid://d15c3xin2ox62" path="res://characters/components/health_component.gd" id="3_iuxou"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iuxou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_427j3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -29,6 +30,8 @@ anchors_preset = 0
 offset_left = -200.0
 offset_top = -100.0
 offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_427j3")
 
@@ -45,7 +48,7 @@ offset_right = 100.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_bm2dv")
+texture = SubResource("CanvasTexture_iuxou")
 expand_mode = 1
 
 [node name="HealthBarUI" parent="EnemyTexture" instance=ExtResource("2_iuxou")]
